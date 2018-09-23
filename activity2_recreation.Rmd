@@ -1,0 +1,55 @@
+---
+title: "Activity for Lab 2"
+author: "Taehoon Ha"
+date: '`r format(Sys.time(), "%d %B, %Y")`'
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+### 1. Downlad lab2.csv file:
+  * time: base, first, second
+  * category: sport (sport activity), qol (quality of life), pain
+```{r}
+lab2 <- read.csv('lab2.csv')
+```
+
+### 2. Make the data tidy.
+```{r}
+df <- lab2 %>%
+  gather(key = id, value = case, indexes = 2:10) %>%
+  separate(id, into = c("time", "category"), sep = "_")
+
+df %>% head
+```
+
+### 3. Summarize by time and category (mean and standard deviation)
+```{r}
+df <- df %>% 
+  group_by(time, category) %>%
+  summarise(Mean = round(mean(case), 2), SD = round(sd(case), 2))
+
+df
+```
+
+### 4. Write the R code to recreate the following graph (please note that tick mark labels are changed):
+```{r}
+pd <- position_dodge(.2)
+
+ggplot(df, aes(x = time, y = Mean, group = category, color = category)) +
+  geom_point(position = pd) +
+  geom_line(position = pd) +
+  geom_errorbar(aes(ymin = df$Mean - df$SD, ymax = df$Mean + df$SD), width = 0.1, size = 1, position = pd ) +
+  theme_bw() +
+  labs(x = "Time of report", y = "Sample mean and standard deviation") +
+  ylim(0, 100) +
+  theme(legend.position = c(0.9, 0.2))
+```
+
