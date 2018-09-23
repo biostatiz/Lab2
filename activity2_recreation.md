@@ -85,7 +85,7 @@ ggplot(df, aes(x = time, y = Mean, group = category, color = category)) +
   theme_bw() +
   labs(x = "Time of report", y = "Sample mean and standard deviation") +
   ylim(0, 100) +
-  theme(legend.position = c(0.9, 0.2))
+  theme(legend.position = c(0.9, 0.2), legend.title = element_blank())
 ```
 
 ![](activity2_recreation_files/figure-markdown_github/unnamed-chunk-5-1.png)
