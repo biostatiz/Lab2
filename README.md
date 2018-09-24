@@ -1,5 +1,5 @@
 # Assignment for Lab 2
-#### Biostatistics1 - Lab2
+#### Lab for Biostatistics1
 
 
 
