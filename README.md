@@ -10,7 +10,7 @@
 ### 3. Write the R code to recreate the graph from the Activity 2 (Problem 4).
 
 ### 4. Download two ﬁles:
-  • coverage.csv - Health Insurance Coverage of the Total Population (2013 - 2016)
+  • coverage.csv - Health Insurance Coverage of the Total Population (2013 - 2016) <br>
   • expenditures.csv - Health Care Expenditures by State of Residence (in millions)
 
 #### 4.1 Make the data frames “tidy”.
