@@ -105,15 +105,9 @@ expenditures <- read.csv('expenditures.csv', skip = 2, nrows = 52, header = T, s
 tidy.coverage <- coverage %>% 
   gather(key = XYear__InsType, value = Counts, indexes = 2:ncol(coverage)) %>%
   separate(XYear__InsType, into = c("XYear", "InsType"), sep = '__') %>%
-  mutate(Year = gsub("X","", XYear),
-         Counts = as.integer(Counts)) %>%
+  mutate(Year = gsub("X","", XYear)) %>%
   select(Location, Year, InsType, Counts)
-```
 
-    ## Warning in evalq(as.integer(Counts), <environment>): NAs introduced by
-    ## coercion
-
-``` r
 tidy.coverage %>% head
 ```
 
@@ -210,14 +204,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 57                Arizona 2013     Employer   2883800       41481
     ## 58                Arizona 2013    Non.Group    170800       41481
     ## 59                Arizona 2013    Uninsured   1223000       41481
-    ## 60                Arizona 2013 Other.Public        NA       41481
+    ## 60                Arizona 2013 Other.Public       N/A       41481
     ## 61                Arizona 2013        Total   6603100       41481
     ## 62                Arizona 2013     Medicaid   1346100       41481
     ## 63                Arizona 2013     Medicare    842000       41481
     ## 64                Arizona 2014     Employer   2835200       43356
     ## 65                Arizona 2014    Non.Group    333500       43356
     ## 66                Arizona 2014    Uninsured    827100       43356
-    ## 67                Arizona 2014 Other.Public        NA       43356
+    ## 67                Arizona 2014 Other.Public       N/A       43356
     ## 68                Arizona 2014        Total   6657200       43356
     ## 69                Arizona 2014     Medicaid   1639400       43356
     ## 70                Arizona 2014     Medicare    911100       43356
@@ -337,14 +331,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 184           Connecticut 2015    Non.Group    302700          NA
     ## 185           Connecticut 2015     Medicaid    690400          NA
     ## 186           Connecticut 2015     Medicare    474700          NA
-    ## 187           Connecticut 2015 Other.Public        NA          NA
+    ## 187           Connecticut 2015 Other.Public       N/A          NA
     ## 188           Connecticut 2015    Uninsured    216900          NA
     ## 189           Connecticut 2015        Total   3571700          NA
     ## 190           Connecticut 2016     Employer   1926900          NA
     ## 191           Connecticut 2016    Non.Group    200700          NA
     ## 192           Connecticut 2016     Medicaid    711200          NA
     ## 193           Connecticut 2016     Medicare    483300          NA
-    ## 194           Connecticut 2016 Other.Public        NA          NA
+    ## 194           Connecticut 2016 Other.Public       N/A          NA
     ## 195           Connecticut 2016    Uninsured    218600          NA
     ## 196           Connecticut 2016        Total   3570300          NA
     ## 197              Delaware 2013     Medicare    141300        9038
@@ -377,14 +371,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 224              Delaware 2016        Total    948200          NA
     ## 225  District of Columbia 2013     Medicare     59900        7443
     ## 226  District of Columbia 2013    Uninsured     51100        7443
-    ## 227  District of Columbia 2013 Other.Public        NA        7443
+    ## 227  District of Columbia 2013 Other.Public       N/A        7443
     ## 228  District of Columbia 2013    Non.Group     30400        7443
     ## 229  District of Columbia 2013        Total    652100        7443
     ## 230  District of Columbia 2013     Medicaid    174900        7443
     ## 231  District of Columbia 2013     Employer    324300        7443
     ## 232  District of Columbia 2014     Medicare     51900        7871
     ## 233  District of Columbia 2014    Uninsured     42300        7871
-    ## 234  District of Columbia 2014 Other.Public        NA        7871
+    ## 234  District of Columbia 2014 Other.Public       N/A        7871
     ## 235  District of Columbia 2014    Non.Group     39900        7871
     ## 236  District of Columbia 2014        Total    656900        7871
     ## 237  District of Columbia 2014     Medicaid    162600        7871
@@ -393,14 +387,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 240  District of Columbia 2015    Non.Group     53500          NA
     ## 241  District of Columbia 2015     Medicaid    175400          NA
     ## 242  District of Columbia 2015     Medicare     66400          NA
-    ## 243  District of Columbia 2015 Other.Public        NA          NA
+    ## 243  District of Columbia 2015 Other.Public       N/A          NA
     ## 244  District of Columbia 2015    Uninsured     27200          NA
     ## 245  District of Columbia 2015        Total    676800          NA
     ## 246  District of Columbia 2016     Employer    351800          NA
     ## 247  District of Columbia 2016    Non.Group     48100          NA
     ## 248  District of Columbia 2016     Medicaid    166000          NA
     ## 249  District of Columbia 2016     Medicare     76000          NA
-    ## 250  District of Columbia 2016 Other.Public        NA          NA
+    ## 250  District of Columbia 2016 Other.Public       N/A          NA
     ## 251  District of Columbia 2016    Uninsured     35400          NA
     ## 252  District of Columbia 2016        Total    685800          NA
     ## 253               Florida 2013    Uninsured   3619700      150547
@@ -555,7 +549,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 402               Indiana 2014    Non.Group    341100       54741
     ## 403               Indiana 2014    Uninsured    687900       54741
     ## 404               Indiana 2014        Total   6477500       54741
-    ## 405               Indiana 2014 Other.Public        NA       54741
+    ## 405               Indiana 2014 Other.Public       N/A       54741
     ## 406               Indiana 2014     Medicaid   1095800       54741
     ## 407               Indiana 2015     Employer   3383600          NA
     ## 408               Indiana 2015    Non.Group    317100          NA
@@ -565,7 +559,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 412               Indiana 2015    Uninsured    611000          NA
     ## 413               Indiana 2015        Total   6512100          NA
     ## 414               Indiana 2016     Employer   3379100          NA
-    ## 415               Indiana 2016    Non.Group    400000          NA
+    ## 415               Indiana 2016    Non.Group     4e+05          NA
     ## 416               Indiana 2016     Medicaid   1279300          NA
     ## 417               Indiana 2016     Medicare    922500          NA
     ## 418               Indiana 2016 Other.Public     94300          NA
@@ -605,14 +599,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 452                Kansas 2013    Uninsured    283000       21490
     ## 453                Kansas 2013        Total   2817600       21490
     ## 454                Kansas 2013     Medicare    364900       21490
-    ## 455                Kansas 2013 Other.Public        NA       21490
+    ## 455                Kansas 2013 Other.Public       N/A       21490
     ## 456                Kansas 2014    Non.Group    167000       22183
     ## 457                Kansas 2014     Employer   1495700       22183
     ## 458                Kansas 2014     Medicaid    430100       22183
     ## 459                Kansas 2014    Uninsured    307400       22183
     ## 460                Kansas 2014        Total   2853000       22183
     ## 461                Kansas 2014     Medicare    373100       22183
-    ## 462                Kansas 2014 Other.Public        NA       22183
+    ## 462                Kansas 2014 Other.Public       N/A       22183
     ## 463                Kansas 2015     Employer   1542700          NA
     ## 464                Kansas 2015    Non.Group    206900          NA
     ## 465                Kansas 2015     Medicaid    384300          NA
@@ -624,7 +618,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 471                Kansas 2016    Non.Group    246300          NA
     ## 472                Kansas 2016     Medicaid    412200          NA
     ## 473                Kansas 2016     Medicare    380200          NA
-    ## 474                Kansas 2016 Other.Public        NA          NA
+    ## 474                Kansas 2016 Other.Public       N/A          NA
     ## 475                Kansas 2016    Uninsured    241900          NA
     ## 476                Kansas 2016        Total   2865000          NA
     ## 477              Kentucky 2013    Uninsured    624100       33194
@@ -640,19 +634,19 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 487              Kentucky 2014     Employer   1965500       35323
     ## 488              Kentucky 2014        Total   4315700       35323
     ## 489              Kentucky 2014     Medicare    713800       35323
-    ## 490              Kentucky 2014 Other.Public        NA       35323
+    ## 490              Kentucky 2014 Other.Public       N/A       35323
     ## 491              Kentucky 2015     Employer   1983800          NA
     ## 492              Kentucky 2015    Non.Group    378100          NA
     ## 493              Kentucky 2015     Medicaid    964400          NA
     ## 494              Kentucky 2015     Medicare    719500          NA
-    ## 495              Kentucky 2015 Other.Public        NA          NA
+    ## 495              Kentucky 2015 Other.Public       N/A          NA
     ## 496              Kentucky 2015    Uninsured    266900          NA
     ## 497              Kentucky 2015        Total   4383400          NA
     ## 498              Kentucky 2016     Employer   1948800          NA
     ## 499              Kentucky 2016    Non.Group    428000          NA
     ## 500              Kentucky 2016     Medicaid    928000          NA
     ## 501              Kentucky 2016     Medicare    706300          NA
-    ## 502              Kentucky 2016 Other.Public        NA          NA
+    ## 502              Kentucky 2016 Other.Public       N/A          NA
     ## 503              Kentucky 2016    Uninsured    271400          NA
     ## 504              Kentucky 2016        Total   4388200          NA
     ## 505             Louisiana 2013     Medicaid    900200       34639
@@ -673,14 +667,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 520             Louisiana 2015    Non.Group    315100          NA
     ## 521             Louisiana 2015     Medicaid    921700          NA
     ## 522             Louisiana 2015     Medicare    615600          NA
-    ## 523             Louisiana 2015 Other.Public        NA          NA
+    ## 523             Louisiana 2015 Other.Public       N/A          NA
     ## 524             Louisiana 2015    Uninsured    502900          NA
     ## 525             Louisiana 2015        Total   4604200          NA
     ## 526             Louisiana 2016     Employer   1910100          NA
     ## 527             Louisiana 2016    Non.Group    281500          NA
     ## 528             Louisiana 2016     Medicaid   1136600          NA
     ## 529             Louisiana 2016     Medicare    621100          NA
-    ## 530             Louisiana 2016 Other.Public        NA          NA
+    ## 530             Louisiana 2016 Other.Public       N/A          NA
     ## 531             Louisiana 2016    Uninsured    484500          NA
     ## 532             Louisiana 2016        Total   4578500          NA
     ## 533                 Maine 2013     Medicaid    277200       12139
@@ -743,14 +737,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 590         Massachusetts 2013     Medicare    840800       68899
     ## 591         Massachusetts 2013     Medicaid   1356100       68899
     ## 592         Massachusetts 2013        Total   6647700       68899
-    ## 593         Massachusetts 2013 Other.Public        NA       68899
+    ## 593         Massachusetts 2013 Other.Public       N/A       68899
     ## 594         Massachusetts 2013    Non.Group    289200       68899
     ## 595         Massachusetts 2013     Employer   3908800       68899
     ## 596         Massachusetts 2014    Uninsured    293800       71274
     ## 597         Massachusetts 2014     Medicare    860500       71274
     ## 598         Massachusetts 2014     Medicaid   1570100       71274
     ## 599         Massachusetts 2014        Total   6658100       71274
-    ## 600         Massachusetts 2014 Other.Public        NA       71274
+    ## 600         Massachusetts 2014 Other.Public       N/A       71274
     ## 601         Massachusetts 2014    Non.Group    352200       71274
     ## 602         Massachusetts 2014     Employer   3549900       71274
     ## 603         Massachusetts 2015     Employer   3696000          NA
@@ -785,7 +779,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 632              Michigan 2015    Non.Group    561800          NA
     ## 633              Michigan 2015     Medicaid   1912700          NA
     ## 634              Michigan 2015     Medicare   1541800          NA
-    ## 635              Michigan 2015 Other.Public        NA          NA
+    ## 635              Michigan 2015 Other.Public       N/A          NA
     ## 636              Michigan 2015    Uninsured    571200          NA
     ## 637              Michigan 2015        Total   9862100          NA
     ## 638              Michigan 2016     Employer   5046700          NA
@@ -820,7 +814,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 667             Minnesota 2016    Non.Group    444500          NA
     ## 668             Minnesota 2016     Medicaid    787500          NA
     ## 669             Minnesota 2016     Medicare    821100          NA
-    ## 670             Minnesota 2016 Other.Public        NA          NA
+    ## 670             Minnesota 2016 Other.Public       N/A          NA
     ## 671             Minnesota 2016    Uninsured    321200          NA
     ## 672             Minnesota 2016        Total   5436600          NA
     ## 673           Mississippi 2013    Uninsured    414600       22017
@@ -925,7 +919,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 772              Nebraska 2015    Non.Group    133800          NA
     ## 773              Nebraska 2015     Medicaid    249600          NA
     ## 774              Nebraska 2015     Medicare    241400          NA
-    ## 775              Nebraska 2015 Other.Public        NA          NA
+    ## 775              Nebraska 2015 Other.Public       N/A          NA
     ## 776              Nebraska 2015    Uninsured    157900          NA
     ## 777              Nebraska 2015        Total   1859800          NA
     ## 778              Nebraska 2016     Employer   1039100          NA
@@ -976,12 +970,12 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 823         New Hampshire 2014     Medicaid    158100       12742
     ## 824         New Hampshire 2014        Total   1319700       12742
     ## 825         New Hampshire 2014     Medicare    198600       12742
-    ## 826         New Hampshire 2014 Other.Public        NA       12742
+    ## 826         New Hampshire 2014 Other.Public       N/A       12742
     ## 827         New Hampshire 2015     Employer    794600          NA
     ## 828         New Hampshire 2015    Non.Group     65200          NA
     ## 829         New Hampshire 2015     Medicaid    165300          NA
     ## 830         New Hampshire 2015     Medicare    184500          NA
-    ## 831         New Hampshire 2015 Other.Public        NA          NA
+    ## 831         New Hampshire 2015 Other.Public       N/A          NA
     ## 832         New Hampshire 2015    Uninsured     68100          NA
     ## 833         New Hampshire 2015        Total   1292800          NA
     ## 834         New Hampshire 2016     Employer    761800          NA
@@ -997,7 +991,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 844            New Jersey 2013        Total   8807400       75148
     ## 845            New Jersey 2013    Uninsured   1034500       75148
     ## 846            New Jersey 2013     Medicare   1112600       75148
-    ## 847            New Jersey 2013 Other.Public        NA       75148
+    ## 847            New Jersey 2013 Other.Public       N/A       75148
     ## 848            New Jersey 2014    Non.Group    381500       79066
     ## 849            New Jersey 2014     Medicaid   1505400       79066
     ## 850            New Jersey 2014     Employer   4877600       79066
@@ -1009,14 +1003,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 856            New Jersey 2015    Non.Group    512800          NA
     ## 857            New Jersey 2015     Medicaid   1614300          NA
     ## 858            New Jersey 2015     Medicare   1136500          NA
-    ## 859            New Jersey 2015 Other.Public        NA          NA
+    ## 859            New Jersey 2015 Other.Public       N/A          NA
     ## 860            New Jersey 2015    Uninsured    699400          NA
     ## 861            New Jersey 2015        Total   8941600          NA
     ## 862            New Jersey 2016     Employer   4838400          NA
     ## 863            New Jersey 2016    Non.Group    545300          NA
     ## 864            New Jersey 2016     Medicaid   1492700          NA
     ## 865            New Jersey 2016     Medicare   1240700          NA
-    ## 866            New Jersey 2016 Other.Public        NA          NA
+    ## 866            New Jersey 2016 Other.Public       N/A          NA
     ## 867            New Jersey 2016    Uninsured    696200          NA
     ## 868            New Jersey 2016        Total   8851500          NA
     ## 869            New Mexico 2013     Medicaid    470000       14304
@@ -1065,7 +1059,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 912              New York 2015    Non.Group   1440600          NA
     ## 913              New York 2015     Medicaid   4658100          NA
     ## 914              New York 2015     Medicare   2584300          NA
-    ## 915              New York 2015 Other.Public        NA          NA
+    ## 915              New York 2015 Other.Public       N/A          NA
     ## 916              New York 2015    Uninsured   1264200          NA
     ## 917              New York 2015        Total  19695000          NA
     ## 918              New York 2016     Employer   9767500          NA
@@ -1093,7 +1087,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 940        North Carolina 2015    Non.Group    710400          NA
     ## 941        North Carolina 2015     Medicaid   1787300          NA
     ## 942        North Carolina 2015     Medicare   1288500          NA
-    ## 943        North Carolina 2015 Other.Public        NA          NA
+    ## 943        North Carolina 2015 Other.Public       N/A          NA
     ## 944        North Carolina 2015    Uninsured   1094800          NA
     ## 945        North Carolina 2015        Total   9902000          NA
     ## 946        North Carolina 2016     Employer   4570100          NA
@@ -1103,7 +1097,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 950        North Carolina 2016 Other.Public    281800          NA
     ## 951        North Carolina 2016    Uninsured   1087000          NA
     ## 952        North Carolina 2016        Total  10068300          NA
-    ## 953          North Dakota 2013 Other.Public        NA        6795
+    ## 953          North Dakota 2013 Other.Public       N/A        6795
     ## 954          North Dakota 2013     Medicaid     69200        6795
     ## 955          North Dakota 2013    Non.Group     60700        6795
     ## 956          North Dakota 2013     Medicare     80900        6795
@@ -1159,7 +1153,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1006                 Ohio 2016 Other.Public     95000          NA
     ## 1007                 Ohio 2016    Uninsured    638000          NA
     ## 1008                 Ohio 2016        Total  11468700          NA
-    ## 1009             Oklahoma 2013 Other.Public        NA       28097
+    ## 1009             Oklahoma 2013 Other.Public       N/A       28097
     ## 1010             Oklahoma 2013    Uninsured    574200       28097
     ## 1011             Oklahoma 2013     Medicaid    699600       28097
     ## 1012             Oklahoma 2013     Medicare    516000       28097
@@ -1250,7 +1244,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1097         Rhode Island 2013        Total   1044300        9646
     ## 1098         Rhode Island 2013     Medicare    143100        9646
     ## 1099         Rhode Island 2013    Non.Group     63700        9646
-    ## 1100         Rhode Island 2014 Other.Public        NA       10071
+    ## 1100         Rhode Island 2014 Other.Public       N/A       10071
     ## 1101         Rhode Island 2014     Medicaid    185300       10071
     ## 1102         Rhode Island 2014     Employer    562100       10071
     ## 1103         Rhode Island 2014    Uninsured     56800       10071
@@ -1261,14 +1255,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1108         Rhode Island 2015    Non.Group     72100          NA
     ## 1109         Rhode Island 2015     Medicaid    176500          NA
     ## 1110         Rhode Island 2015     Medicare    135100          NA
-    ## 1111         Rhode Island 2015 Other.Public        NA          NA
+    ## 1111         Rhode Island 2015 Other.Public       N/A          NA
     ## 1112         Rhode Island 2015    Uninsured     49500          NA
     ## 1113         Rhode Island 2015        Total   1044800          NA
     ## 1114         Rhode Island 2016     Employer    535000          NA
     ## 1115         Rhode Island 2016    Non.Group     83700          NA
     ## 1116         Rhode Island 2016     Medicaid    214100          NA
     ## 1117         Rhode Island 2016     Medicare    156800          NA
-    ## 1118         Rhode Island 2016 Other.Public        NA          NA
+    ## 1118         Rhode Island 2016 Other.Public       N/A          NA
     ## 1119         Rhode Island 2016    Uninsured     50500          NA
     ## 1120         Rhode Island 2016        Total   1054300          NA
     ## 1121       South Carolina 2013    Uninsured    758000       33468
@@ -1317,7 +1311,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1164         South Dakota 2015    Non.Group     73200          NA
     ## 1165         South Dakota 2015     Medicaid    117000          NA
     ## 1166         South Dakota 2015     Medicare    115500          NA
-    ## 1167         South Dakota 2015 Other.Public        NA          NA
+    ## 1167         South Dakota 2015 Other.Public       N/A          NA
     ## 1168         South Dakota 2015    Uninsured     78900          NA
     ## 1169         South Dakota 2015        Total    848400          NA
     ## 1170         South Dakota 2016     Employer    416500          NA
@@ -1330,14 +1324,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1177            Tennessee 2013     Employer   2895200       46149
     ## 1178            Tennessee 2013    Non.Group    218200       46149
     ## 1179            Tennessee 2013    Uninsured    844200       46149
-    ## 1180            Tennessee 2013 Other.Public        NA       46149
+    ## 1180            Tennessee 2013 Other.Public       N/A       46149
     ## 1181            Tennessee 2013        Total   6400200       46149
     ## 1182            Tennessee 2013     Medicaid   1244700       46149
     ## 1183            Tennessee 2013     Medicare    984400       46149
     ## 1184            Tennessee 2014     Employer   3230900       48249
     ## 1185            Tennessee 2014    Non.Group    382800       48249
     ## 1186            Tennessee 2014    Uninsured    625000       48249
-    ## 1187            Tennessee 2014 Other.Public        NA       48249
+    ## 1187            Tennessee 2014 Other.Public       N/A       48249
     ## 1188            Tennessee 2014        Total   6502000       48249
     ## 1189            Tennessee 2014     Medicaid   1065800       48249
     ## 1190            Tennessee 2014     Medicare    988800       48249
@@ -1345,14 +1339,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1192            Tennessee 2015    Non.Group    415400          NA
     ## 1193            Tennessee 2015     Medicaid   1249600          NA
     ## 1194            Tennessee 2015     Medicare   1052200          NA
-    ## 1195            Tennessee 2015 Other.Public        NA          NA
+    ## 1195            Tennessee 2015 Other.Public       N/A          NA
     ## 1196            Tennessee 2015    Uninsured    718100          NA
     ## 1197            Tennessee 2015        Total   6616500          NA
     ## 1198            Tennessee 2016     Employer   3072000          NA
     ## 1199            Tennessee 2016    Non.Group    370700          NA
     ## 1200            Tennessee 2016     Medicaid   1337600          NA
     ## 1201            Tennessee 2016     Medicare    985500          NA
-    ## 1202            Tennessee 2016 Other.Public        NA          NA
+    ## 1202            Tennessee 2016 Other.Public       N/A          NA
     ## 1203            Tennessee 2016    Uninsured    744800          NA
     ## 1204            Tennessee 2016        Total   6674100          NA
     ## 1205                Texas 2013 Other.Public    665900      176341
@@ -1429,14 +1423,14 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1276                 Utah 2015    Non.Group    209100          NA
     ## 1277                 Utah 2015     Medicaid    357200          NA
     ## 1278                 Utah 2015     Medicare    307600          NA
-    ## 1279                 Utah 2015 Other.Public        NA          NA
+    ## 1279                 Utah 2015 Other.Public       N/A          NA
     ## 1280                 Utah 2015    Uninsured    301800          NA
     ## 1281                 Utah 2015        Total   3004500          NA
     ## 1282                 Utah 2016     Employer   1854700          NA
     ## 1283                 Utah 2016    Non.Group    203700          NA
     ## 1284                 Utah 2016     Medicaid    308100          NA
     ## 1285                 Utah 2016     Medicare    306300          NA
-    ## 1286                 Utah 2016 Other.Public        NA          NA
+    ## 1286                 Utah 2016 Other.Public       N/A          NA
     ## 1287                 Utah 2016    Uninsured    373900          NA
     ## 1288                 Utah 2016        Total   3079700          NA
     ## 1289              Vermont 2013     Employer    317700        6221
@@ -1523,7 +1517,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1370           Washington 2016 Other.Public    121700          NA
     ## 1371           Washington 2016    Uninsured    513800          NA
     ## 1372           Washington 2016        Total   7297300          NA
-    ## 1373        West Virginia 2013 Other.Public        NA       16622
+    ## 1373        West Virginia 2013 Other.Public       N/A       16622
     ## 1374        West Virginia 2013     Medicaid    382500       16622
     ## 1375        West Virginia 2013     Medicare    329400       16622
     ## 1376        West Virginia 2013    Uninsured    213800       16622
@@ -1558,7 +1552,7 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1405            Wisconsin 2013        Total   5641900       47030
     ## 1406            Wisconsin 2013     Medicare    812900       47030
     ## 1407            Wisconsin 2013    Non.Group    225300       47030
-    ## 1408            Wisconsin 2014 Other.Public        NA       50109
+    ## 1408            Wisconsin 2014 Other.Public       N/A       50109
     ## 1409            Wisconsin 2014    Uninsured    420800       50109
     ## 1410            Wisconsin 2014     Medicaid    956600       50109
     ## 1411            Wisconsin 2014     Employer   3150100       50109
@@ -1607,5 +1601,9 @@ merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
     ## 1454              Wyoming 2016 Other.Public     16400          NA
     ## 1455              Wyoming 2016    Uninsured     55500          NA
     ## 1456              Wyoming 2016        Total    571700          NA
+
+``` r
+# full_join(tidy.coverage, tidy.expenditures, by = c("Location", "Year")) %>% filter(Year >= 2013 & Year <= 2016) %>% arrange(Year)
+```
 
 ### 5. Submit a link to the repo “Lab2” via Canvas.

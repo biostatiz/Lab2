@@ -72,8 +72,7 @@ expenditures <- read.csv('expenditures.csv', skip = 2, nrows = 52, header = T, s
 tidy.coverage <- coverage %>% 
   gather(key = XYear__InsType, value = Counts, indexes = 2:ncol(coverage)) %>%
   separate(XYear__InsType, into = c("XYear", "InsType"), sep = '__') %>%
-  mutate(Year = gsub("X","", XYear),
-         Counts = as.integer(Counts)) %>%
+  mutate(Year = gsub("X","", XYear)) %>%
   select(Location, Year, InsType, Counts)
 
 tidy.coverage %>% head
@@ -91,6 +90,8 @@ tidy.expenditures %>% head
 ```{r}
 merge(tidy.coverage, tidy.expenditures, by = c("Location", "Year"), all = T) %>%
   filter(Year >= 2013 & Year <= 2016)
+
+# full_join(tidy.coverage, tidy.expenditures, by = c("Location", "Year")) %>% filter(Year >= 2013 & Year <= 2016) %>% arrange(Year)
 ```
 
 ### 5. Submit a link to the repo “Lab2” via Canvas.
